@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { findHall } from '@/lib/data';
+import { findHall, getPublicReviewResearch } from '@/lib/data';
 import { FavoriteButton, ReviewComposer, LiveReviews } from '@/components/client-widgets';
 import { Icon } from '@/components/icons';
 import { VenueGallery } from '@/components/venue-gallery';
 import { FacilityInfo } from '@/components/facility-info';
+import { PublicReviewInsight } from '@/components/public-review-insight';
 
 export function generateStaticParams() {
   return ['yeonhap-weddinghall','navy-hotel-wedding','l65-hotel-wedding','it-convention','ds-convention-wedding','grand-ostium','arena-park-wedding','darmiang'].map((slug) => ({ slug }));
@@ -16,6 +17,7 @@ export default async function HallDetail({ params }: { params: Promise<{ slug: s
   if (!h) notFound();
 
   const scores: [string, number | null][] = [['식사', h.meal], ['분위기', h.mood], ['주차', h.parking], ['진행', h.ceremony]];
+  const publicResearch = getPublicReviewResearch(h.slug);
 
   return (
     <>
@@ -55,6 +57,8 @@ export default async function HallDetail({ params }: { params: Promise<{ slug: s
             </section>
 
             <FacilityInfo hall={h} />
+
+            <PublicReviewInsight research={publicResearch} />
 
             <section className="content-section review-section">
               <div className="review-heading">

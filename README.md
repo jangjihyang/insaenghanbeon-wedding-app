@@ -29,3 +29,25 @@
 2. Supabase Dashboard → Authentication → Providers → Google에서 Google Cloud Console의 Client ID/Secret을 입력하고 활성화합니다. Google Cloud Console OAuth 승인된 리디렉션 URI에는 Supabase 화면에 표시되는 Callback URL을 그대로 추가합니다.
 3. Supabase Dashboard → Authentication → Providers → Kakao에서 Kakao Developers REST API Key/Client Secret을 입력하고 활성화합니다. Kakao Developers의 Redirect URI에도 Supabase 화면에 표시되는 Callback URL을 그대로 추가합니다.
 4. Google 또는 Kakao 개발자 콘솔의 키·시크릿은 Vercel 환경 변수나 GitHub에 넣지 않습니다. Supabase Provider 설정 화면에만 입력합니다.
+
+## 공개 후기·소셜 리서치 데이터 (v8)
+
+- 각 웨딩홀 상세 화면과 `/reviews`에 공개 후기 요약, 출처 링크, 확인일, 신뢰도를 추가했습니다.
+- 데이터는 `lib/data.ts`의 `publicReviewResearch`에 있습니다.
+- 모든 원문 사진/영상은 재게시하지 않고 외부 원문 링크만 제공합니다.
+- 운영 기준과 주의사항은 `PUBLIC_REVIEW_SOURCES.md`를 참고하세요.
+
+## 대량 웨딩 장소 목록 (v9)
+
+- 서울·경기·인천 공개 웹 후보 **186곳**을 `lib/venue-inventory.ts`에 추가했습니다.
+- `/search` 화면에서 지역·출처 상태·장소명 기준으로 검색할 수 있습니다.
+- 상태값은 `공식 확인(16)`, `플랫폼 확인(122)`, `추가 확인 필요(48)`로 구분합니다.
+- 상태값은 실시간 영업·예약 가능 보증이 아니며, 운영 전에는 각 장소의 공식 상담으로 재검증해야 합니다.
+
+## 공개 정보공유·실제 지도 (v10)
+
+- `/community`에서 로그인 없이 장소 제보, 방문 후기, 질문, 정보 공유 글을 작성·열람할 수 있습니다.
+- 공개 게시판을 실제로 사용하려면 Supabase SQL Editor에서 `supabase/COMMUNITY_BOARD_SETUP.sql`을 한 번 실행해야 합니다.
+- 운영 안내는 `COMMUNITY_BOARD_OPERATION.md`를 참고하세요.
+- 메인 지도는 Kakao API 키가 없어도 OpenStreetMap 실제 지도 바탕화면을 표시합니다. 공개 주소가 없는 후보는 장소명 검색 결과 또는 지역 중심을 표시하므로 외부 지도 링크로 다시 확인해야 합니다.
+- 공개 웹 기반 후보 69곳을 추가해 서울·경기·인천 장소 후보는 총 255곳입니다.

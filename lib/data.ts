@@ -75,3 +75,98 @@ export const featuredReviews = [
 ];
 
 export function findHall(slug:string){return halls.find(hall=>hall.slug===slug);}
+
+export type PublicReviewSource = {
+  label: string;
+  url: string;
+  kind: '방문자 블로그' | '리뷰 플랫폼' | '공식 SNS' | '촬영자 포트폴리오';
+};
+
+export type PublicReviewResearch = {
+  summary: string;
+  caution: string;
+  confidence: '낮음' | '중간 이하' | '중간' | '중상';
+  checkedAt: string;
+  sources: PublicReviewSource[];
+};
+
+/*
+  공개 웹 후기 리서치(2026-10-12): 로그인 없이 확인 가능한 페이지의 내용을
+  중립적으로 재서술했습니다. 별점·가격·수용인원은 출처별 차이 또는 변동 가능성 때문에
+  넣지 않았고, 원문 사진은 저작권·초상권 확인 전 재게시하지 않습니다.
+*/
+export const publicReviewResearch: Record<string, PublicReviewResearch> = {
+  'yeonhap-weddinghall': {
+    summary: '공개 방문 후기는 교회 예식에 가까운 차분한 형식과 하객 좌석 배치를 특징으로 언급합니다. 예식 공간과 연회장이 층을 달리해 이동이 있다는 점도 확인할 만합니다.',
+    caution: '블로그 두 건은 동일 작성자이며 후기 표본이 적습니다. 교회식·찬송가 요소는 개인 취향에 따라 다르게 느껴질 수 있습니다.', confidence: '중간 이하', checkedAt: '2026-10-12',
+    sources: [
+      {label:'방문 하객 블로그',kind:'방문자 블로그',url:'https://m.blog.naver.com/paranglife/224220500737'},
+      {label:'제3자 관찰 블로그',kind:'방문자 블로그',url:'https://m.blog.naver.com/paranglife/224193616130'},
+    ],
+  },
+  'navy-hotel-wedding': {
+    summary: '하객 후기는 세인트홀의 화이트톤 공간과 생음악·조명 연출을 인상으로 언급합니다. 셔틀·주차와 연회장 이용 여건은 방문 시점에 따라 달라질 수 있습니다.',
+    caution: '교통·주차·식사 시간에 관한 구체적 경험은 한 방문자 후기 중심이므로 상시 조건처럼 보기는 어렵습니다.', confidence: '중간', checkedAt: '2026-10-12',
+    sources: [
+      {label:'하객 방문 후기',kind:'방문자 블로그',url:'https://m.blog.naver.com/yes_shoong/224119110872'},
+      {label:'본식 당사자 후기',kind:'방문자 블로그',url:'https://m.blog.naver.com/taein0208/224160397900'},
+      {label:'본식 스냅 게시물',kind:'촬영자 포트폴리오',url:'https://www.instagram.com/p/DScADxtD0uM'},
+    ],
+  },
+  'l65-hotel-wedding': {
+    summary: '공개 하객 후기는 가든홀의 자연광·정원 분위기와 컨벤션홀의 샹들리에 연출을 각각 언급합니다. 홀과 연회장이 같은 층이라는 편의 의견도 있으나 혼잡 가능성은 시간대별 확인이 필요합니다.',
+    caution: '주차 시간과 혼잡은 일부 방문 경험이므로 모든 예식 시간에 동일하다고 단정하지 않습니다.', confidence: '중간', checkedAt: '2026-10-12',
+    sources: [
+      {label:'가든홀 하객 후기',kind:'방문자 블로그',url:'https://lifensook.tistory.com/502'},
+      {label:'가든홀 하객 후기',kind:'방문자 블로그',url:'https://blog.naver.com/PostView.naver?blogId=olzrolzrv&logNo=224335567010&redirect=Dlog'},
+    ],
+  },
+  'it-convention': {
+    summary: '한 공개 하객 후기는 우드·베이지 로비와 밝은 대기실, 어두운 홀의 대비를 인상으로 묘사합니다. 해당 방문자는 주차·동선·식사에 만족했다고 했으나 후기 수가 제한적입니다.',
+    caution: '공식 계정 게시물은 홍보 콘텐츠로 구분합니다. 주차와 음식 평가는 개인 경험을 일반화하지 않습니다.', confidence: '중간', checkedAt: '2026-10-12',
+    sources: [
+      {label:'아모르홀 가족 하객 후기',kind:'방문자 블로그',url:'https://m.blog.naver.com/pretty6144/224317004326'},
+      {label:'그레이스홀 본식 촬영 후기',kind:'촬영자 포트폴리오',url:'https://blog.naver.com/mj0832/224113245268'},
+      {label:'공식 계정 공간 게시물',kind:'공식 SNS',url:'https://www.instagram.com/p/DWGjBBsE8MU'},
+    ],
+  },
+  'ds-convention-wedding': {
+    summary: '공개 검색에서 하객 후기 링크는 확인되지만, 본문 세부 내용을 충분히 검토할 수 없어 게시할 방문자 후기 정보가 아직 부족합니다. 공개 스냅에서는 어두운 홀과 입장 조명 연출을 참고할 수 있습니다.',
+    caution: '스냅과 공식 게시물은 이용자 경험 리뷰가 아닙니다. 장점·불편사항을 다수 의견처럼 표시하지 않습니다.', confidence: '낮음', checkedAt: '2026-10-12',
+    sources: [
+      {label:'하객 후기 (본문 검토 제한)',kind:'방문자 블로그',url:'https://blog.naver.com/PostView.naver?blogId=jscom88080&logNo=224174694204'},
+      {label:'본식 스냅 포트폴리오',kind:'촬영자 포트폴리오',url:'https://bitsaegim.kr/304'},
+    ],
+  },
+  'grand-ostium': {
+    summary: '공개 투어·방문 후기에서는 CMCC홀의 높은 층고와 클래식한 분위기, 주차 편의가 언급됩니다. 주차 후 이동 거리와 대기공간·동선은 홀과 이용 시점에 따라 달라 직접 확인이 필요하다는 의견도 있습니다.',
+    caution: '투어·계약 의사가 있는 리뷰와 실제 하객 후기는 구분해서 읽어야 하며, 동선 의견은 일부 방문자의 경험입니다.', confidence: '중상', checkedAt: '2026-10-12',
+    sources: [
+      {label:'공개 투어 후기·리뷰',kind:'리뷰 플랫폼',url:'https://www.weddingbook.com/weddinghall/96d3bb9d-2d60-11e6-93b9-0abe8d4f74d3?tabId=4'},
+      {label:'하객 방문 후기',kind:'방문자 블로그',url:'https://andongbooja3.tistory.com/entry/%EA%B7%B8%EB%9E%9C%EB%93%9C-%EC%98%A4%EC%8A%A4%ED%8B%B0%EC%97%84-%EC%9B%A8%EB%94%A9%ED%99%80-%ED%9B%84%EA%B8%B0-%EC%9D%B8%EC%B2%9C%EB%AC%B8%ED%95%99%EA%B2%BD%EA%B8%B0%EC%9E%A5-%EC%A3%BC%EC%B0%A8-%ED%8E%B8%ED%95%9C-%ED%95%98%EA%B0%9D-%EC%8B%9D%EC%82%AC-%ED%9B%84%EA%B8%B0'},
+      {label:'블리스홀 본식 후기',kind:'방문자 블로그',url:'https://blog.naver.com/sakurai00125/224216086049'},
+    ],
+  },
+  'arena-park-wedding': {
+    summary: '공개 방문 의견에서는 홀의 꽃 장식과 행진에 맞춘 조명 연출이 인상으로 언급됩니다. 주차와 뷔페 평가는 후기별 경험이 달라 별도 확인이 필요합니다.',
+    caution: '반복적으로 검증된 단점은 자료 부족으로 표시하지 않습니다. 사업자 SNS 메뉴 소개는 이용자 만족도 근거가 아닙니다.', confidence: '중간 이하', checkedAt: '2026-10-12',
+    sources: [
+      {label:'네이버 방문 후기 (상세 확인 제한)',kind:'방문자 블로그',url:'https://blog.naver.com/jam_d/224240207969'},
+      {label:'아이웨딩 공개 후기',kind:'리뷰 플랫폼',url:'https://www.iwedding.co.kr/enterprise/info/1355131054'},
+      {label:'공식 메뉴 게시물',kind:'공식 SNS',url:'https://www.instagram.com/p/Dcan7-kE9T5'},
+    ],
+  },
+  'darmiang': {
+    summary: '공개 하객 후기는 통창의 자연광과 송도 전망, 그리너리한 공간 분위기를 장점으로 언급합니다. 햇빛이 강한 자리와 홀·식사 공간 사이 이동은 방문 시 확인할 요소로 나타납니다.',
+    caution: '햇빛과 이동에 관한 내용은 개별 경험이며, 빈도나 보편적 문제로 단정하지 않습니다.', confidence: '중상', checkedAt: '2026-10-12',
+    sources: [
+      {label:'하객 후기',kind:'방문자 블로그',url:'https://blog.naver.com/saltnbright/224281368324'},
+      {label:'하객 방문 후기',kind:'방문자 블로그',url:'https://m.blog.naver.com/choimy84/224077222517'},
+      {label:'촬영자의 공개 경험담',kind:'촬영자 포트폴리오',url:'https://www.threads.com/@doavely/post/Ddy6wFUn15E/%EB%82%98-%EB%B3%B8%EC%8B%9D%EC%8A%A4%EB%83%85-%EC%9E%91%EA%B0%80%EC%9D%B8%EB%8D%B0-%EC%86%A1%EB%8F%84-%EB%8B%A4%EB%A5%B4%EB%AF%B8%EC%95%99-%EC%B4%AC%EC%98%81-%EA%B0%94%EB%8B%A4%EA%B0%80-%EC%8B%A0%EB%B6%80%EB%8B%98%EC%9D%B4-%EA%BC%AD-%EC%8B%9D%EC%82%AC%ED%95%98%EA%B3%A0-%EA%B0%80%EB%9D%BC%EA%B3%A0-%ED%95%98%EC%85%94%EC%84%9C-%EB%B0%A5-%EB%A8%B9%EC%9D%80%EC%A0%81-%EC%9E%88%EB%8A%94%EB%8D%B0-%EB%B0%A5-%EB%84%88%EB%AC%B4-%EB%A7%9B%EC%9E%88%EC%96%B4-%EB%98%90-%EB%A8%B9%EA%B7%9C-%EC%8B%AD%EB%8B%88%EB%8B%A4'},
+    ],
+  },
+};
+
+export function getPublicReviewResearch(slug: string) {
+  return publicReviewResearch[slug];
+}
