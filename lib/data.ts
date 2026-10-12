@@ -1,7 +1,7 @@
 export type Hall = {
   slug: string;
   name: string;
-  region: string;
+  region: '서울' | '경기' | '인천';
   district: string;
   type: string;
   station: string;
@@ -10,53 +10,68 @@ export type Hall = {
   mealPrice: string;
   rental: string;
   guarantee: string;
-  rating: number;
+  rating: number | null;
   reviewCount: number;
-  meal: number;
-  mood: number;
-  parking: number;
-  ceremony: number;
-  image: string;
+  meal: number | null;
+  mood: number | null;
+  parking: number | null;
+  ceremony: number | null;
+  image: string | null;
   gallery: string[];
+  galleryUrl: string;
+  officialUrl: string;
+  photoUsageNote: string;
   tags: string[];
   intro: string;
   badge?: string;
   benefits: string[];
 };
 
-const photo = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=86`;
-
+/*
+  실제 웨딩홀 데이터: 주소·교통·공식 링크는 각 공식 사이트 기준으로 확인했습니다.
+  가격·수용 인원·평점은 계약 조건과 사용자 후기로 변동되므로 임의 수치를 넣지 않았습니다.
+  image는 공식 도메인/공식 CDN에서 확인된 대표 이미지 경로만 사용했습니다.
+  상업적 이미지 사용과 핫링크는 각 웨딩홀 권리자에게 별도 허가가 필요합니다.
+*/
 export const halls: Hall[] = [
   {
-    slug: 'maison-de-lumiere', name: '메종 드 루미에르', region: '서울', district: '강남구', type: '호텔·컨벤션', station: '학동역 3분', address: '서울 강남구 논현로 000', capacity: '120~320명', mealPrice: '1인 92,000원~', rental: '대관 4,400,000원~', guarantee: '보증 180명', rating: 4.8, reviewCount: 284, meal: 4.9, mood: 4.8, parking: 4.5, ceremony: 4.8,
-    image: photo('photo-1507504031003-b417219a0fde'), gallery: [photo('photo-1507504031003-b417219a0fde'), photo('photo-1519225421980-715cb0215aed'), photo('photo-1519741497674-611481863552')], tags: ['자연광 채플', '식사 만족', '프라이빗'], intro: '햇살이 스며드는 채플과 정갈한 코스 요리가 돋보이는 도심 속 웨딩 공간이에요.', badge: '이번 주 인기', benefits: ['시식 2인 제공', '당일 계약 혜택 상담', '하객 주차 3시간']
+    slug:'yeonhap-weddinghall', name:'연합웨딩홀', region:'서울', district:'종로구', type:'웨딩홀', station:'1호선 종로5가역 2번 출구 · 도보 5분', address:'서울특별시 종로구 김상옥로 30, 한국기독교연합회관 3층', capacity:'공식 상담 시 확인', mealPrice:'공식 상담 시 확인', rental:'공식 상담 시 확인', guarantee:'공식 상담 시 확인', rating:null, reviewCount:0, meal:null, mood:null, parking:null, ceremony:null,
+    image:'https://www.yhwedding.co.kr/attachList/upload/hall/c20201002175533993/p20201002181020067/add20210907201820900.jpg', gallery:['https://www.yhwedding.co.kr/attachList/upload/hall/c20201002175533993/p20201002181020067/add20210907201820900.jpg'], galleryUrl:'https://www.yhwedding.co.kr/whatsNew/gallery', officialUrl:'https://www.yhwedding.co.kr/', photoUsageNote:'공식 홈페이지 대표 이미지 경로 확인 · 상업적 사용 허가 별도 확인 필요', tags:['종로', '역세권', '공식 갤러리'], intro:'종로5가역 인근의 연합웨딩홀입니다. 세부 예식 조건과 비용은 공식 상담을 통해 확인할 수 있어요.', badge:'공식 정보 확인', benefits:['공식 위치 안내 제공', '종로5가역 도보 5분 안내', '공식 갤러리 연결']
   },
   {
-    slug: 'the-orangerie-seoul', name: '더 오랑주리 서울', region: '서울', district: '송파구', type: '하우스웨딩', station: '잠실역 7분', address: '서울 송파구 올림픽로 000', capacity: '80~220명', mealPrice: '1인 78,000원~', rental: '대관 3,200,000원~', guarantee: '보증 120명', rating: 4.7, reviewCount: 196, meal: 4.7, mood: 4.9, parking: 4.3, ceremony: 4.8,
-    image: photo('photo-1519167758481-83f550bb49b3'), gallery: [photo('photo-1519167758481-83f550bb49b3'), photo('photo-1464366400600-7168b8af9bc3'), photo('photo-1478146896981-b80fe463b330')], tags: ['가든 연출', '단독홀', '감성 조명'], intro: '계절감 있는 플라워 연출과 단독 사용이 가능한 따뜻한 분위기의 하우스웨딩 공간이에요.', benefits: ['플라워 연출 상담', '신부대기실 단독 사용', '발렛 주차 안내']
+    slug:'navy-hotel-wedding', name:'해군호텔W웨딩홀', region:'서울', district:'영등포구', type:'호텔 웨딩', station:'대방역·보라매역 셔틀 안내', address:'서울특별시 영등포구 가마산로 538', capacity:'공식 상담 시 확인', mealPrice:'공식 상담 시 확인', rental:'공식 상담 시 확인', guarantee:'공식 상담 시 확인', rating:null, reviewCount:0, meal:null, mood:null, parking:null, ceremony:null,
+    image:'https://cdn.imweb.me/upload/S202206302a0f8304214ef/dab7eab7b9621.png', gallery:['https://cdn.imweb.me/upload/S202206302a0f8304214ef/dab7eab7b9621.png'], galleryUrl:'http://navywedding.co.kr/', officialUrl:'http://navywedding.co.kr/', photoUsageNote:'공식 홈페이지에서 사용된 공식 CDN 이미지 경로 확인 · 상업적 사용 허가 별도 확인 필요', tags:['영등포', '호텔 웨딩', '셔틀 안내'], intro:'해군호텔W웨딩홀은 영등포구 가마산로에 위치한 웨딩 공간입니다. 대방역과 보라매역 방면 예식 고객 셔틀 안내는 공식 홈페이지에서 확인할 수 있어요.', benefits:['공식 셔틀 안내 확인', '공식 웨딩 안내 연결', '상담으로 세부 조건 확인']
   },
   {
-    slug: 'seongbuk-terrace', name: '성북 테라스 가든', region: '서울', district: '성북구', type: '가든·야외', station: '한성대입구역 8분', address: '서울 성북구 성북로 000', capacity: '70~180명', mealPrice: '1인 69,000원~', rental: '대관 2,600,000원~', guarantee: '보증 100명', rating: 4.6, reviewCount: 118, meal: 4.5, mood: 4.9, parking: 4.1, ceremony: 4.7,
-    image: photo('photo-1522673607200-164d1b6ce486'), gallery: [photo('photo-1522673607200-164d1b6ce486'), photo('photo-1511285560929-80b456fea0bc'), photo('photo-1492684223066-81342ee5ff30')], tags: ['야외 예식', '소규모', '반려동물 동반'], intro: '도심에서 조금 벗어나 초록빛 테라스와 여유로운 리셉션을 즐길 수 있는 공간이에요.', benefits: ['우천 시 실내 대체', '가든 포토존', '피로연 동선 안내']
+    slug:'l65-hotel-wedding', name:'L65호텔웨딩컨벤션', region:'서울', district:'동대문구', type:'호텔·컨벤션', station:'1호선 청량리역 5번 출구 바로 앞', address:'서울특별시 동대문구 왕산로 200, 청량리역 롯데캐슬스카이 L65 타워동 6층', capacity:'공식 상담 시 확인', mealPrice:'공식 상담 시 확인', rental:'공식 상담 시 확인', guarantee:'공식 상담 시 확인', rating:null, reviewCount:0, meal:null, mood:null, parking:null, ceremony:null,
+    image:'https://www.L65hotelwedding.co.kr/attachList/upload/hall/c20240610195348533/p20240610195847947/pop20240611143502353.jpg', gallery:['https://www.L65hotelwedding.co.kr/attachList/upload/hall/c20240610195348533/p20240610195847947/pop20240611143502353.jpg'], galleryUrl:'https://www.l65hotelwedding.co.kr/wedding/garden/', officialUrl:'https://www.l65hotelwedding.co.kr/', photoUsageNote:'공식 홈페이지 홀 소개 이미지 경로 확인 · 상업적 사용 허가 별도 확인 필요', tags:['청량리', '역세권', '가든홀'], intro:'청량리역 바로 앞 L65 타워동에 위치한 호텔 웨딩 컨벤션입니다. 가든홀과 컨벤션홀 정보는 공식 페이지에서 확인할 수 있어요.', benefits:['청량리역 접근 안내', '공식 홀 소개 연결', '상담으로 예식 조건 확인']
   },
   {
-    slug: 'river-atelier-hanam', name: '리버 아틀리에 하남', region: '경기', district: '하남시', type: '컨벤션', station: '미사역 5분', address: '경기 하남시 미사강변 000', capacity: '150~450명', mealPrice: '1인 74,000원~', rental: '대관 3,800,000원~', guarantee: '보증 250명', rating: 4.7, reviewCount: 341, meal: 4.8, mood: 4.6, parking: 4.9, ceremony: 4.7,
-    image: photo('photo-1507504031003-b417219a0fde'), gallery: [photo('photo-1507504031003-b417219a0fde'), photo('photo-1519225421980-715cb0215aed'), photo('photo-1464366400600-7168b8af9bc3')], tags: ['넓은 주차', '한강뷰', '대규모'], intro: '넉넉한 하객 규모와 편리한 주차가 필요한 예비부부에게 잘 맞는 대형 컨벤션이에요.', badge: '주차 만족도 1위', benefits: ['하객 주차 5시간', '버스 대절 정차 가능', '식사 사전 시식']
+    slug:'it-convention', name:'아이티컨벤션', region:'경기', district:'용인시 기흥구', type:'컨벤션', station:'수원 삼성전자삼거리 인근', address:'경기도 용인시 기흥구 흥덕1로 13, 흥덕IT밸리 A동 2층', capacity:'공식 상담 시 확인', mealPrice:'공식 상담 시 확인', rental:'공식 상담 시 확인', guarantee:'공식 상담 시 확인', rating:null, reviewCount:0, meal:null, mood:null, parking:null, ceremony:null,
+    image:null, gallery:[], galleryUrl:'https://www.itconvention.co.kr/whatsNew/gallery/', officialUrl:'https://www.itconvention.co.kr/', photoUsageNote:'공식 갤러리 페이지 연결 · 직접 임베드 가능한 이미지 경로와 사용 허가 확인 필요', tags:['용인', '컨벤션', '공식 갤러리'], intro:'용인 흥덕IT밸리에 위치한 아이티컨벤션입니다. 정확한 홀 구성과 예식 조건은 공식 갤러리 및 상담을 통해 확인하세요.', benefits:['공식 위치 안내 제공', '공식 갤러리 연결', '상담으로 예식 조건 확인']
   },
   {
-    slug: 'atelier-suwon', name: '아틀리에 수원', region: '경기', district: '수원시', type: '하우스웨딩', station: '광교중앙역 10분', address: '경기 수원시 영통구 000', capacity: '60~160명', mealPrice: '1인 65,000원~', rental: '대관 2,300,000원~', guarantee: '보증 80명', rating: 4.5, reviewCount: 86, meal: 4.6, mood: 4.8, parking: 4.2, ceremony: 4.6,
-    image: photo('photo-1511285560929-80b456fea0bc'), gallery: [photo('photo-1511285560929-80b456fea0bc'), photo('photo-1519741497674-611481863552'), photo('photo-1522673607200-164d1b6ce486')], tags: ['소규모', '맞춤 연출', '프라이빗'], intro: '우리만의 예식 순서와 플라워 톤을 섬세하게 조율할 수 있는 아늑한 공간이에요.', benefits: ['1:1 플래너 동행', '메뉴 커스터마이징', '입·퇴장 리허설']
+    slug:'ds-convention-wedding', name:'디에스컨벤션웨딩', region:'경기', district:'수원시 팔달구', type:'웨딩홀', station:'1호선 화서역 5·6번 출구 · 도보 5분', address:'경기도 수원시 팔달구 수성로 92, 농민회관 2층', capacity:'공식 상담 시 확인', mealPrice:'공식 상담 시 확인', rental:'공식 상담 시 확인', guarantee:'공식 상담 시 확인', rating:null, reviewCount:0, meal:null, mood:null, parking:null, ceremony:null,
+    image:null, gallery:[], galleryUrl:'http://www.dsconvention.co.kr/whatsNew/gallery/', officialUrl:'http://www.dsconvention.co.kr/', photoUsageNote:'공식 갤러리 페이지 연결 · HTTPS 직접 이미지 경로와 사용 허가 확인 필요', tags:['수원', '화서역', '공식 갤러리'], intro:'화서역 인근 농민회관에 위치한 디에스컨벤션웨딩입니다. 공식 홈페이지에서 홀과 위치 정보를 확인할 수 있어요.', benefits:['화서역 도보 5분 공식 안내', '공식 갤러리 연결', '상담으로 예식 조건 확인']
   },
   {
-    slug: 'dear-marine-incheon', name: '디어 마린 인천', region: '인천', district: '연수구', type: '호텔·컨벤션', station: '센트럴파크역 4분', address: '인천 연수구 아트센터대로 000', capacity: '120~350명', mealPrice: '1인 81,000원~', rental: '대관 4,100,000원~', guarantee: '보증 200명', rating: 4.6, reviewCount: 154, meal: 4.8, mood: 4.7, parking: 4.6, ceremony: 4.6,
-    image: photo('photo-1519741497674-611481863552'), gallery: [photo('photo-1519741497674-611481863552'), photo('photo-1519167758481-83f550bb49b3'), photo('photo-1478146896981-b80fe463b330')], tags: ['호텔 예식', '뷰', '연회 전문'], intro: '도시 전망과 탄탄한 연회 운영 경험을 갖춘 호텔형 웨딩 베뉴예요.', benefits: ['신혼 객실 제안', '연회 전담 매니저', '가족 식사 공간']
+    slug:'grand-ostium', name:'그랜드오스티엄', region:'인천', district:'미추홀구', type:'컨벤션', station:'인천 1호선 문학경기장역 2번 출구 · 도보 5분', address:'인천광역시 미추홀구 매소홀로 618, 인천문학경기장', capacity:'공식 상담 시 확인', mealPrice:'공식 상담 시 확인', rental:'공식 상담 시 확인', guarantee:'공식 상담 시 확인', rating:null, reviewCount:0, meal:null, mood:null, parking:null, ceremony:null,
+    image:null, gallery:[], galleryUrl:'https://www.grandostium.co.kr/home/sub/official_wedding', officialUrl:'https://www.grandostium.co.kr/', photoUsageNote:'공식 홀 소개 페이지 연결 · 직접 임베드 가능한 이미지 경로와 사용 허가 확인 필요', tags:['인천', '문학경기장', '홀 투어'], intro:'인천문학경기장에 위치한 그랜드오스티엄입니다. 공식 홀 투어 페이지에서 예식 공간을 확인할 수 있어요.', badge:'공식 정보 확인', benefits:['문학경기장역 도보 5분 공식 안내', '공식 홀 투어 연결', '상담으로 예식 조건 확인']
+  },
+  {
+    slug:'arena-park-wedding', name:'아레나파크웨딩홀', region:'인천', district:'미추홀구', type:'웨딩홀', station:'1호선 도원역 1번 출구 · 도보 5분 이내', address:'인천광역시 미추홀구 석정로 51 1층', capacity:'공식 상담 시 확인', mealPrice:'공식 상담 시 확인', rental:'공식 상담 시 확인', guarantee:'공식 상담 시 확인', rating:null, reviewCount:0, meal:null, mood:null, parking:null, ceremony:null,
+    image:null, gallery:[], galleryUrl:'https://arenawed.kr/arena-hall', officialUrl:'https://arenawed.kr/', photoUsageNote:'공식 홀 소개 페이지 연결 · 직접 임베드 가능한 이미지 경로와 사용 허가 확인 필요', tags:['인천', '도원역', '공식 홀 소개'], intro:'도원역 인근에 위치한 아레나파크웨딩홀입니다. 공식 홀 소개 페이지에서 공간 정보를 확인할 수 있어요.', benefits:['도원역 접근 공식 안내', '공식 홀 소개 연결', '상담으로 예식 조건 확인']
+  },
+  {
+    slug:'darmiang', name:'다르미앙', region:'인천', district:'연수구', type:'웨딩·연회', station:'인천 1호선 테크노파크역 4번 출구 연결 · 도보 3분 안내', address:'인천광역시 연수구 갯벌로 12, 미추홀타워 본관(A동) 21층', capacity:'공식 상담 시 확인', mealPrice:'공식 상담 시 확인', rental:'공식 상담 시 확인', guarantee:'공식 상담 시 확인', rating:null, reviewCount:0, meal:null, mood:null, parking:null, ceremony:null,
+    image:'https://www.darmiang.co.kr/sh_page/img/p37_img01_1.jpg', gallery:['https://www.darmiang.co.kr/sh_page/img/p37_img01_1.jpg'], galleryUrl:'https://www.darmiang.co.kr/', officialUrl:'https://www.darmiang.co.kr/', photoUsageNote:'공식 홈페이지 Wedding 섹션 이미지 경로 확인 · 상업적 사용 허가 별도 확인 필요', tags:['송도', '테크노파크역', '웨딩·연회'], intro:'송도 미추홀타워 21층에 위치한 다르미앙입니다. 테크노파크역 연결 안내와 웨딩 공간 정보는 공식 홈페이지에서 확인할 수 있어요.', benefits:['테크노파크역 연결 공식 안내', '공식 웨딩 섹션 연결', '상담으로 예식 조건 확인']
   }
 ];
 
 export const featuredReviews = [
-  { name: '예식 3개월 전 · 서울', hall: '메종 드 루미에르', score: 5, text: '상담 때 들었던 내용과 실제 진행이 거의 같았어요. 특히 식사 반응이 정말 좋아서 하객분들께 여러 번 칭찬받았습니다.', tags: ['식사 만족', '친절한 진행'] },
-  { name: '예식 완료 · 경기', hall: '리버 아틀리에 하남', score: 5, text: '부모님 하객이 많아 주차를 가장 걱정했는데 동선이 편했고, 예식장 내부도 생각보다 더 깔끔했어요.', tags: ['주차 편리', '넓은 홀'] },
-  { name: '예식 5개월 전 · 서울', hall: '더 오랑주리 서울', score: 4, text: '채광과 플라워 연출이 예뻐서 사진이 기대돼요. 소규모 예식 분위기를 원하는 분께 추천해요.', tags: ['분위기', '포토존'] }
+  { name:'이용자 후기 수집 중', hall:'실제 웨딩홀 후기', score:null, text:'현재는 실제 예식장 정보와 공식 출처를 우선 반영 중입니다. 로그인 후 직접 방문·상담·예식 경험을 남겨주세요.', tags:['실제 후기 모집'] },
+  { name:'정보 업데이트 안내', hall:'공식 조건 확인', score:null, text:'예식 비용, 수용 인원, 주차 조건은 날짜와 계약 조건에 따라 달라질 수 있어 공식 상담을 통해 확인해야 합니다.', tags:['공식 상담 권장'] },
+  { name:'사진 권리 안내', hall:'공식 갤러리', score:null, text:'공식 홈페이지에 게시된 사진도 상업적 재사용 허가와는 별개입니다. 이미지 사용 전 각 웨딩홀의 권리 확인이 필요합니다.', tags:['사진 사용권 확인'] }
 ];
 
-export function findHall(slug: string) { return halls.find((hall) => hall.slug === slug); }
+export function findHall(slug:string){return halls.find(hall=>hall.slug===slug);}

@@ -7,7 +7,7 @@ import { VenueGallery } from '@/components/venue-gallery';
 import { FacilityInfo } from '@/components/facility-info';
 
 export function generateStaticParams() {
-  return ['maison-de-lumiere','the-orangerie-seoul','seongbuk-terrace','river-atelier-hanam','atelier-suwon','dear-marine-incheon'].map((slug) => ({ slug }));
+  return ['yeonhap-weddinghall','navy-hotel-wedding','l65-hotel-wedding','it-convention','ds-convention-wedding','grand-ostium','arena-park-wedding','darmiang'].map((slug) => ({ slug }));
 }
 
 export default async function HallDetail({ params }: { params: Promise<{ slug: string }> }) {
@@ -15,7 +15,7 @@ export default async function HallDetail({ params }: { params: Promise<{ slug: s
   const h = findHall(slug);
   if (!h) notFound();
 
-  const scores: [string, number][] = [['식사', h.meal], ['분위기', h.mood], ['주차', h.parking], ['진행', h.ceremony]];
+  const scores: [string, number | null][] = [['식사', h.meal], ['분위기', h.mood], ['주차', h.parking], ['진행', h.ceremony]];
 
   return (
     <>
@@ -27,7 +27,7 @@ export default async function HallDetail({ params }: { params: Promise<{ slug: s
           <h1>{h.name}</h1>
           <p className="detail-station"><Icon name="pin" /> {h.station} · {h.address}</p>
           <div className="detail-score">
-            <strong>★ {h.rating}</strong><span>실제 후기 {h.reviewCount}개</span><i /><span>저장 {Math.floor(h.reviewCount * 1.8)}명</span>
+            <strong>{h.rating !== null ? `★ ${h.rating}` : '실제 후기 수집 중'}</strong><span>{h.reviewCount ? `실제 후기 ${h.reviewCount}개` : '공식 정보 기반 등록'}</span><i /><a className="official-source-link" href={h.officialUrl} target="_blank" rel="noreferrer">공식 홈페이지 <Icon name="arrow" /></a>
           </div>
           <div className="detail-actions">
             <FavoriteButton slug={h.slug} />
@@ -62,10 +62,10 @@ export default async function HallDetail({ params }: { params: Promise<{ slug: s
                 <Link href="/reviews">전체 보기 <Icon name="chevron" /></Link>
               </div>
               <div className="score-board">
-                <div className="big-score"><b>{h.rating}</b><span>★★★★★</span><small>후기 {h.reviewCount}개 기준</small></div>
+                <div className="big-score"><b>{h.rating !== null ? h.rating : '—'}</b><span>{h.rating !== null ? '★★★★★' : '후기 수집 중'}</span><small>{h.reviewCount ? `후기 ${h.reviewCount}개 기준` : '새로운 실제 후기를 기다리고 있어요'}</small></div>
                 <div className="score-bars">
                   {scores.map(([label, value]) => (
-                    <div key={label}><span>{label}</span><div className="bar"><i style={{ width: `${value * 20}%` }} /></div><b>{value.toFixed(1)}</b></div>
+                    <div key={label}><span>{label}</span><div className="bar"><i style={{ width: `${(value ?? 0) * 20}%` }} /></div><b>{value !== null ? value.toFixed(1) : '—'}</b></div>
                   ))}
                 </div>
               </div>
