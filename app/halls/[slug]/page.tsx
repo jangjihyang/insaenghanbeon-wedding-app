@@ -6,6 +6,7 @@ import { Icon } from '@/components/icons';
 import { VenueGallery } from '@/components/venue-gallery';
 import { FacilityInfo } from '@/components/facility-info';
 import { PublicReviewInsight } from '@/components/public-review-insight';
+import { CostSummary } from '@/components/cost-sharing';
 
 export function generateStaticParams() {
   return ['yeonhap-weddinghall','navy-hotel-wedding','l65-hotel-wedding','it-convention','ds-convention-wedding','grand-ostium','arena-park-wedding','darmiang'].map((slug) => ({ slug }));
@@ -33,7 +34,7 @@ export default async function HallDetail({ params }: { params: Promise<{ slug: s
           </div>
           <div className="detail-actions">
             <FavoriteButton slug={h.slug} />
-            <Link href={`/inquiries/new?hall=${h.slug}`} className="inquiry-cta">견적 문의하기 <Icon name="arrow" /></Link>
+            <Link href={`/share-cost?venue=${encodeURIComponent(h.name)}&slug=${h.slug}`} className="inquiry-cta">비용 공유하기 <Icon name="arrow" /></Link>
           </div>
         </section>
 
@@ -53,8 +54,10 @@ export default async function HallDetail({ params }: { params: Promise<{ slug: s
                 <div><span>대관료</span><b>{h.rental}</b></div>
                 <div><span>최소 보증</span><b>{h.guarantee}</b></div>
               </div>
-              <p className="info-note">* 비용은 예식 일자, 시간대, 메뉴에 따라 달라질 수 있어요. 상담 시 정확한 견적을 확인하세요.</p>
+              <p className="info-note">* 표시된 기본 정보와 이용자 비용 공유는 참고용입니다. 예식 시점·시간대·인원·포함 항목에 따라 달라질 수 있으니 계약 전에는 직접 조건을 확인하세요.</p>
             </section>
+
+            <CostSummary venueName={h.name} venueSlug={h.slug} />
 
             <FacilityInfo hall={h} />
 
@@ -79,7 +82,7 @@ export default async function HallDetail({ params }: { params: Promise<{ slug: s
           </div>
 
           <aside className="detail-aside">
-            <div className="aside-card"><span>상담 전 체크</span><b>내 예식 조건을<br />먼저 정리해보세요.</b><p>희망 일자와 인원, 중요 조건을 남기면 비교가 더 쉬워져요.</p><Link href={`/inquiries/new?hall=${h.slug}`}>상담 조건 남기기 <Icon name="arrow" /></Link></div>
+            <div className="aside-card"><span>비용 정보 공유</span><b>내가 받은 조건을<br />다음 예비부부와 나눠요.</b><p>상담·계약·실제 결제 중 어떤 금액인지 표시해 익명으로 공유할 수 있어요.</p><Link href={`/share-cost?venue=${encodeURIComponent(h.name)}&slug=${h.slug}`}>비용 공유하기 <Icon name="arrow" /></Link></div>
             <div className="aside-card white"><span>기본 정보</span><p><Icon name="pin" /> {h.address}</p><p><Icon name="clock" /> 상담 가능 시간 확인</p></div>
           </aside>
         </div>
