@@ -1,0 +1,13 @@
+import Link from 'next/link';
+import {Icon} from '@/components/icons';
+
+const sections=[
+  {number:'01',title:'예식 시간과 전체 흐름',items:['예식 시작·종료 시간과 앞뒤 예식 간격은 어떻게 되나요?','신부대기실 입실부터 연회 시작, 촬영·폐백까지의 순서를 시간표로 받을 수 있나요?']},
+  {number:'02',title:'하객 동선과 교통',items:['지하철역·버스정류장에서 실제 입구까지 걸리는 시간과 안내 표지가 충분한가요?','주차 가능 대수, 무료 주차 시간, 가장 혼잡한 시간대를 확인했나요?']},
+  {number:'03',title:'식사와 연회 운영',items:['식사 방식과 실제 제공·마감 시간, 예식 중 식사 가능 여부를 확인했나요?','예식이 겹치는 시간에 연회장 좌석과 하객 동선이 혼잡하지 않은지 살펴봤나요?']},
+  {number:'04',title:'홀 분위기와 시설',items:['희망 시간대의 조명·버진로드·신부대기실을 직접 확인했나요?','사진·영상 촬영 위치와 하객의 시야, 날씨가 나쁠 때의 대기 공간을 확인했나요?']},
+  {number:'05',title:'견적과 계약서',items:['대관·식대·장식·연출·부가세를 포함한 총 예상 금액과 추가 비용 항목을 받았나요?','보증 인원 변경, 취소·날짜 변경 조건과 구두 혜택이 계약서에 적혀 있나요?']},
+  {number:'06',title:'상담 후 비교하기',items:['투어 당일 좋았던 점과 망설여지는 점을 바로 메모했나요?','두 사람의 우선순위(교통·식사·분위기·예산)와 최종 상담 조건을 다시 비교했나요?']},
+];
+
+export default function TourChecklist(){return <div className="page-wrap tour-checklist-page"><Link className="mini-back" href="/">‹ 홈으로 돌아가기</Link><div className="tour-hero"><span className="eyebrow">WEDDING TOUR CHECKLIST</span><h1>예식장 투어 전,<br/><em>이것만은 꼭</em> 확인하세요.</h1><p>상담실에서 바로 꺼내 볼 수 있는 12가지 핵심 질문과 현장 체크 포인트입니다.</p><div className="tour-hero-meta"><span><b>12</b>가지 질문</span><span><b>6</b>개 확인 영역</span><span>계약 전 재확인</span></div></div><div className="tour-check-note"><Icon name="check" size={17}/><p>이 체크리스트는 비교를 돕기 위한 안내입니다. 비용·보증 인원·주차·식사 조건은 예식 날짜와 계약 조건에 따라 달라질 수 있으니, 반드시 웨딩홀 상담 내용과 계약서를 기준으로 확인하세요.</p></div><section className="tour-list">{sections.map(section=><article className="tour-section" key={section.number}><div className="tour-number">{section.number}</div><div><h2>{section.title}</h2><ul>{section.items.map((item,index)=><li key={item}><span>{String(Number(section.number)*2-1+index).padStart(2,'0')}</span>{item}</li>)}</ul></div></article>)}</section><section className="tour-bottom"><div><span className="eyebrow">NEXT STEP</span><h2>체크리스트를 들고<br/>후보 웨딩홀을 비교해보세요.</h2><p>방문 후에는 조건과 느낀 점을 정보공유 게시판에 남겨 다른 예비부부에게 도움을 줄 수 있어요.</p></div><div className="tour-actions"><Link href="/search" className="primary-button">웨딩홀 찾기 <Icon name="arrow"/></Link><Link href="/community" className="tour-outline">투어 정보 공유하기 <Icon name="arrow"/></Link></div></section></div>}
